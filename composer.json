@@ -1,0 +1,60 @@
+{
+  "name": "mabar/github-repository-configurator",
+  "description": "Configure multiple GitHub repositories via CLI commands.",
+  "keywords": [
+    "github",
+    "configurator"
+  ],
+  "type": "project",
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/mabar/github-repository-configurator",
+  "require": {
+    "php": ">=7.1.0",
+    "contributte/console": "^0.5.0",
+    "contributte/guzzlette": "^2.0.0",
+    "contributte/neonizer": "^0.2.2",
+    "nette/bootstrap": "~2.4.6",
+    "nette/di": "~2.4.13",
+    "tracy/tracy": "~2.5.2"
+  },
+  "require-dev": {
+    "ninjify/qa": "^0.8.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-install-cmd": [
+      "Contributte\\Neonizer\\NeonizerExtension::process"
+    ],
+    "post-update-cmd": [
+      "Contributte\\Neonizer\\NeonizerExtension::process"
+    ],
+    "qa": [
+      "linter app",
+      "codesniffer app"
+    ],
+    "phpstan-install": [
+      "mkdir -p temp/phpstan",
+      "composer require -d temp/phpstan phpstan/phpstan:0.10.3",
+      "composer require -d temp/phpstan phpstan/phpstan-deprecation-rules:0.10.2",
+      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:0.10.1"
+    ],
+    "phpstan": [
+      "temp/phpstan/vendor/bin/phpstan analyse -l max -c phpstan.neon app"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "extra": {
+    "neonizer": {
+      "files": [
+        {
+          "dist-file": "app/config.local.neon.dist"
+        }
+      ]
+    }
+  }
+}

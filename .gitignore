@@ -1,0 +1,11 @@
+# IDE
+/.idea
+
+# Tests
+/temp
+
+# Composer
+/vendor/*
+
+# Nette config
+/app/config.local.neon

@@ -1,0 +1,11 @@
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	guzzle: Contributte\Guzzlette\DI\GuzzleExtension
+
+console:
+	lazy: true
+
+services:
+	- App\Commands\MergeTypeConfiguratorCommand(%githubApiKey%)
+	- App\Commands\ReplaceDefaultLabelsConfiguratorCommand(%githubApiKey%)
+	- App\Commands\WikiConfiguratorCommand(%githubApiKey%)
